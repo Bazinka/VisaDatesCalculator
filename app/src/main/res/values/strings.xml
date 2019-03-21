@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">VisaDatesCalculator</string>
+    <string name="next_button">Продолжить</string>
+    <string name="enter_name">Введите имя</string>
+    <string name="save_button">Сохранить</string>
+    <string name="empty_name_title">Имя не указано</string>
+</resources>

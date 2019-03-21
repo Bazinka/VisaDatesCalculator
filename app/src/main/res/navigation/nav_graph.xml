@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph"
+            app:startDestination="@id/chooseUserFragment">
+
+    <fragment android:id="@+id/chooseUserFragment"
+              android:name="com.visadatescalculator.fragments.ChooseUserFragment"
+              android:label="ChooseUserFragment"
+              tools:layout="@layout/choose_user_fragment">
+
+        <action android:id="@+id/action_chooseUserFragment_to_datesCalculatorFragment"
+                app:destination="@id/datesCalculatorFragment"/>
+        <action android:id="@+id/action_chooseUserFragment_to_addPersonFragment"
+                app:destination="@id/addPersonFragment"/>
+    </fragment>
+    <fragment android:id="@+id/datesCalculatorFragment"
+              android:name="com.visadatescalculator.fragments.DatesCalculatorFragment"
+              android:label="dates_calculator_fragment"
+              tools:layout="@layout/dates_calculator_fragment"/>
+
+    <fragment android:id="@+id/addPersonFragment"
+              android:name="com.visadatescalculator.fragments.AddPersonFragment"
+              android:label="add_person_fragment"
+              tools:layout="@layout/add_person_fragment">
+        <action android:id="@+id/action_addPersonFragment_to_chooseUserFragment"
+                app:destination="@id/chooseUserFragment"/>
+    </fragment>
+</navigation>
