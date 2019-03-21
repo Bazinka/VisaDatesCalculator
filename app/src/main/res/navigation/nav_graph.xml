@@ -6,7 +6,7 @@
 
     <fragment android:id="@+id/chooseUserFragment"
               android:name="com.visadatescalculator.fragments.ChooseUserFragment"
-              android:label="ChooseUserFragment"
+              android:label="@string/choose_person_title"
               tools:layout="@layout/choose_user_fragment">
 
         <action android:id="@+id/action_chooseUserFragment_to_datesCalculatorFragment"
@@ -15,13 +15,13 @@
                 app:destination="@id/addPersonFragment"/>
     </fragment>
     <fragment android:id="@+id/datesCalculatorFragment"
-              android:name="com.visadatescalculator.fragments.DatesCalculatorFragment"
-              android:label="dates_calculator_fragment"
-              tools:layout="@layout/dates_calculator_fragment"/>
+              android:name="com.visadatescalculator.fragments.DaysCalculatorFragment"
+              android:label="@string/dates_calculator_title"
+              tools:layout="@layout/days_calculator_fragment"/>
 
     <fragment android:id="@+id/addPersonFragment"
               android:name="com.visadatescalculator.fragments.AddPersonFragment"
-              android:label="add_person_fragment"
+              android:label="@string/add_person_title"
               tools:layout="@layout/add_person_fragment">
         <action android:id="@+id/action_addPersonFragment_to_chooseUserFragment"
                 app:destination="@id/chooseUserFragment"/>

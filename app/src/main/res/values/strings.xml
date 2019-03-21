@@ -8,4 +8,7 @@
     <string name="warning_trips_text">Убедитесь, что введены все поездки, которые могут быть учтены в расчете (то есть
         примерно за последний год)
     </string>
+    <string name="choose_person_title">Выберите человека</string>
+    <string name="dates_calculator_title">Расчет дней пребывания</string>
+    <string name="add_person_title">Добавление пользователя</string>
 </resources>
