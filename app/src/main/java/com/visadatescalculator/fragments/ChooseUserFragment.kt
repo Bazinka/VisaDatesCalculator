@@ -13,7 +13,6 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.visadatescalculator.R
-import com.visadatescalculator.person_list.PersonListAdapter
 import com.visadatescalculator.viewmodel.ChooseUserViewModel
 import com.visadatescalculator.viewmodel.ChooseUserViewModelFactory
 

@@ -4,4 +4,8 @@
     <string name="enter_name">Введите имя</string>
     <string name="save_button">Сохранить</string>
     <string name="empty_name_title">Имя не указано</string>
+    <string name="calculate_text_button">Рассчитать</string>
+    <string name="warning_trips_text">Убедитесь, что введены все поездки, которые могут быть учтены в расчете (то есть
+        примерно за последний год)
+    </string>
 </resources>

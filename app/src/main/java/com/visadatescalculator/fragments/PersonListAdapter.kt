@@ -1,4 +1,4 @@
-package com.visadatescalculator.person_list
+package com.visadatescalculator.fragments
 
 import android.content.Context
 import android.view.LayoutInflater

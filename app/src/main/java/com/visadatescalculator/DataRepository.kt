@@ -5,6 +5,7 @@ import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import com.visadatescalculator.database.MainDatabase
 import com.visadatescalculator.model.Person
+import com.visadatescalculator.model.Trip
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -20,15 +21,21 @@ class DataRepository internal constructor(private val context: Context) {
     fun getAllPersons(): LiveData<List<Person>> {
         return MainDatabase.getDatabase(context).personDao().getAll()
     }
-//
-//
-//    fun loadComments(productId: Int): LiveData<List<CommentEntity>> {
-//        return mDatabase.commentDao().loadComments(productId)
-//    }
-//
-//    fun searchProducts(query: String): LiveData<List<ProductEntity>> {
-//        return mDatabase.productDao().searchAllProducts(query)
-//    }
+
+    @WorkerThread
+    suspend fun insertTrip(trip: Trip) {
+        withContext(Dispatchers.IO) {
+            MainDatabase.getDatabase(context).tripDao().insertTrip(trip)
+        }
+    }
+
+    fun getAllTrips(): LiveData<List<Trip>> {
+        return MainDatabase.getDatabase(context).tripDao().getAll()
+    }
+
+    fun getTripsByPersonId(personId: Int): LiveData<List<Trip>> {
+        return MainDatabase.getDatabase(context).tripDao().getTripsByPersonId(personId)
+    }
 
     companion object {
         @Volatile
