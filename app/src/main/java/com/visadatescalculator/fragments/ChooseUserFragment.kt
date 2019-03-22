@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -45,10 +44,9 @@ class ChooseUserFragment : Fragment() {
         val adapter = PersonListAdapter(activity as Context, View.OnClickListener {
             val uid = it.tag.toString().toInt()
             view?.let {
-                Navigation.findNavController(it).navigate(
-                    R.id.datesCalculatorFragment,
-                    bundleOf("uid" to uid)
-                )
+                val action = ChooseUserFragmentDirections.actionChooseUserFragmentToDatesCalculatorFragment()
+                action.personUid = uid
+                Navigation.findNavController(it).navigate(action)
             }
         })
         recyclerView?.adapter = adapter

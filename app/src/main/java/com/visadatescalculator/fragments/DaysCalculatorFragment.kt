@@ -27,11 +27,21 @@ class DaysCalculatorFragment : Fragment() {
 
     private lateinit var viewModel: DaysCalculatorViewModel
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val personUid = arguments?.getInt("uid") ?: -1
+        return inflater.inflate(R.layout.days_calculator_fragment, container, false)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        val personUid = DaysCalculatorFragmentArgs
+            .fromBundle(arguments ?: Bundle())
+            .personUid
+
         if (personUid < 0) {
 //            Navigation.findNavController(view).navigateUp()
         }
@@ -39,17 +49,12 @@ class DaysCalculatorFragment : Fragment() {
         viewModel = ViewModelProviders.of(
             this,
             DaysCalculatorViewModelFactory(activity as Context, personUid)
-        )
-            .get(DaysCalculatorViewModel::class.java)
-
-        return inflater.inflate(R.layout.days_calculator_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+        ).get(DaysCalculatorViewModel::class.java)
 
         view?.findViewById<FloatingActionButton>(R.id.fab_add_trip)?.setOnClickListener {
-            view?.let { Navigation.findNavController(it).navigate(R.id.addTripFragment) }
+            val action = DaysCalculatorFragmentDirections.actionDatesCalculatorFragmentToAddTripFragment()
+            action.personUid = viewModel.personId
+            view?.let { Navigation.findNavController(it).navigate(action) }
         }
 
         val recyclerView = view?.findViewById<RecyclerView>(R.id.trip_list)

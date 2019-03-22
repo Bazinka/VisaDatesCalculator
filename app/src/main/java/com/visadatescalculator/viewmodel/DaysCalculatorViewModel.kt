@@ -7,7 +7,7 @@ import com.visadatescalculator.DataRepository
 import com.visadatescalculator.model.Trip
 
 
-class DaysCalculatorViewModel(context: Context, personId: Int) : ViewModel() {
+class DaysCalculatorViewModel(context: Context, val personId: Int) : ViewModel() {
 
     private var repository: DataRepository = DataRepository(context)
 

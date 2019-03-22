@@ -32,15 +32,18 @@ class AddTripFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val personUid = arguments?.getInt("uid") ?: -1
-
-        viewModel = ViewModelProviders.of(this, AddTripViewModelFactory(activity as Context, personUid))
-            .get(AddTripViewModel::class.java)
         return inflater.inflate(R.layout.add_trip_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        val personUid = AddTripFragmentArgs
+            .fromBundle(arguments ?: Bundle())
+            .personUid
+
+        viewModel = ViewModelProviders.of(this, AddTripViewModelFactory(activity as Context, personUid))
+            .get(AddTripViewModel::class.java)
 
         view?.findViewById<Button>(R.id.button_save)?.setOnClickListener { button ->
             val enterDate = view?.findViewById<TextView>(R.id.enter_date_text)?.tag as Date
