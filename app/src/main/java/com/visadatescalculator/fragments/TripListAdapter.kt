@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.annotation.Nullable
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -15,7 +14,7 @@ import java.text.SimpleDateFormat
 
 
 class TripListAdapter internal constructor(
-    context: Context, @Nullable private val clickCallback: View.OnClickListener
+    context: Context
 ) : ListAdapter<Trip, TripListAdapter.TripListViewHolder>(TripDiffCallback()) {
     private var trips: List<Trip> = emptyList()
     private val inflater: LayoutInflater = LayoutInflater.from(context)
@@ -33,16 +32,10 @@ class TripListAdapter internal constructor(
     override fun onBindViewHolder(holder: TripListViewHolder, position: Int) {
         val current = trips[position]
 
-        val format = SimpleDateFormat("dd.mm.yyyy")
+        val format = SimpleDateFormat("dd.MM.yyyy")
 
         holder.tripDateFromTextView.text = format.format(current.enterDate)
         holder.tripDateToTextView.text = format.format(current.leaveDate)
-//        holder.apply {
-//            itemView.tag = current.uid
-//            itemView.setOnClickListener {
-//                clickCallback.onClick(it)
-//            }
-//        }
     }
 
     internal fun setTrips(words: List<Trip>) {

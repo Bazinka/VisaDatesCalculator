@@ -8,7 +8,6 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -32,11 +31,6 @@ class DaysCalculatorFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.days_calculator_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         val personUid = arguments?.getInt("uid") ?: -1
         if (personUid < 0) {
 //            Navigation.findNavController(view).navigateUp()
@@ -48,20 +42,18 @@ class DaysCalculatorFragment : Fragment() {
         )
             .get(DaysCalculatorViewModel::class.java)
 
+        return inflater.inflate(R.layout.days_calculator_fragment, container, false)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
         view?.findViewById<FloatingActionButton>(R.id.fab_add_trip)?.setOnClickListener {
-            //            view?.let { Navigation.findNavController(it).navigate(R.id.) }
+            view?.let { Navigation.findNavController(it).navigate(R.id.addTripFragment) }
         }
 
         val recyclerView = view?.findViewById<RecyclerView>(R.id.trip_list)
-        val adapter = TripListAdapter(activity as Context, View.OnClickListener {
-            val uid = it.tag.toString().toInt()
-            view?.let {
-                Navigation.findNavController(it).navigate(
-                    R.id.datesCalculatorFragment,
-                    bundleOf("uid" to uid)
-                )
-            }
-        })
+        val adapter = TripListAdapter(activity as Context)
         recyclerView?.adapter = adapter
 
         viewModel.trips.observe(viewLifecycleOwner, Observer { trips ->
