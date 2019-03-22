@@ -51,7 +51,7 @@ class AddTripFragment : Fragment() {
             viewModel.insertTrip(enterDate, leaveDate)
 
             button.let {
-                Navigation.findNavController(it).navigate(R.id.datesCalculatorFragment)
+                Navigation.findNavController(it).navigateUp()
             }
         }
 

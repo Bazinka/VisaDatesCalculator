@@ -41,11 +41,7 @@
     <fragment android:id="@+id/addPersonFragment"
               android:name="com.visadatescalculator.fragments.AddPersonFragment"
               android:label="@string/add_person_title"
-              tools:layout="@layout/add_person_fragment">
-        <action android:id="@+id/action_addPersonFragment_to_chooseUserFragment"
-                app:destination="@id/chooseUserFragment"
-                app:popUpTo="@id/addTripFragment"/>
-    </fragment>
+              tools:layout="@layout/add_person_fragment"/>
 
     <fragment android:id="@+id/addTripFragment"
               android:name="com.visadatescalculator.fragments.AddTripFragment"
@@ -55,8 +51,5 @@
                 android:name="personUid"
                 app:argType="integer"
                 android:defaultValue="-1"/>
-
-        <action android:id="@+id/action_addTripFragment_to_datesCalculatorFragment"
-                app:destination="@id/datesCalculatorFragment"/>
     </fragment>
 </navigation>

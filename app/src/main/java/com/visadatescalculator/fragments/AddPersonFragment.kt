@@ -42,7 +42,7 @@ class AddPersonFragment : Fragment() {
             viewModel.insertPerson(name)
 
             button.let {
-                Navigation.findNavController(it).navigate(R.id.action_addPersonFragment_to_chooseUserFragment)
+                Navigation.findNavController(it).navigateUp()
             }
         }
     }
