@@ -12,5 +12,5 @@
             android:padding="10dp"
             android:textSize="@android:dimen/app_icon_size"
             android:text="пример"
-            android:textColor="@android:color/holo_orange_light"/>
+            android:textColor="@color/primary_text"/>
 </LinearLayout>

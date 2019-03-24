@@ -19,7 +19,7 @@
                 android:padding="10dp"
                 android:textSize="@dimen/trip_dates_text_size"
                 android:text="пример"
-                android:textColor="@android:color/holo_orange_light"/>
+                android:textColor="@color/primary_text"/>
 
         <TextView
                 android:layout_width="0dp"
@@ -30,7 +30,7 @@
                 android:padding="10dp"
                 android:textSize="@dimen/trip_dates_text_size"
                 android:text=" - "
-                android:textColor="@android:color/holo_orange_light"/>
+                android:textColor="@color/primary_text"/>
 
         <TextView
                 android:id="@+id/trip_date_to"
@@ -42,7 +42,7 @@
                 android:padding="10dp"
                 android:textSize="@dimen/trip_dates_text_size"
                 android:text="пример"
-                android:textColor="@android:color/holo_orange_light"/>
+                android:textColor="@color/primary_text"/>
     </LinearLayout>
     <TextView
             android:id="@+id/trip_days_amount"
@@ -53,6 +53,6 @@
             android:layout_margin="10dp"
             android:padding="10dp"
             android:textSize="@dimen/trip_dates_text_size"
-            android:textColor="@color/colorPrimary"/>
+            android:textColor="@color/primary_text"/>
 
 </LinearLayout>

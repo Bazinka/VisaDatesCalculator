@@ -20,8 +20,8 @@
             android:id="@+id/button_save"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:background="@color/primary"
             android:text="@string/save_button"
-            android:textColor="@color/button_color" />
+            android:textColor="@color/primary_text" />
 
 </LinearLayout>
