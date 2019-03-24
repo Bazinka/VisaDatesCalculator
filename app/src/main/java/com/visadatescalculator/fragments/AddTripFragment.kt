@@ -2,6 +2,7 @@ package com.visadatescalculator.fragments
 
 import android.app.DatePickerDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,10 +11,13 @@ import android.widget.Button
 import android.widget.DatePicker
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.visadatescalculator.R
+import com.visadatescalculator.model.Trip
 import com.visadatescalculator.viewmodel.AddTripViewModel
 import com.visadatescalculator.viewmodel.AddTripViewModelFactory
 import java.text.SimpleDateFormat
@@ -48,15 +52,30 @@ class AddTripFragment : Fragment() {
         view?.findViewById<Button>(R.id.button_save)?.setOnClickListener { button ->
             val enterDate = view?.findViewById<TextView>(R.id.enter_date_text)?.tag as Date
             val leaveDate = view?.findViewById<TextView>(R.id.leave_date_text)?.tag as Date
-            viewModel.insertTrip(enterDate, leaveDate)
-
-            button.let {
-                Navigation.findNavController(it).navigateUp()
-            }
+            viewModel.insertTrip(viewLifecycleOwner, enterDate, leaveDate)
         }
 
+        viewModel.intersectionTrips.observe(viewLifecycleOwner, Observer {
+            if (it.isEmpty()) {
+                view?.findViewById<Button>(R.id.button_save)?.let {
+                    Navigation.findNavController(it).navigateUp()
+                }
+            } else {
+                showErrorDialog(it)
+            }
+        })
         setUpDatePicker(R.id.choose_enter_date_layout, R.id.enter_date_text)
         setUpDatePicker(R.id.choose_leave_date_layout, R.id.leave_date_text)
+    }
+
+    private fun showErrorDialog(list: List<Trip>?) {
+        val builder = AlertDialog.Builder(activity as Context);
+        builder.setTitle("Ошибка")
+        builder.setMessage("Нельзя создать поездку, даты пересекаются с текущими поездками")
+        builder.setPositiveButton(android.R.string.ok, DialogInterface.OnClickListener { dialogInterface, i ->
+            dialogInterface.dismiss()
+        })
+        builder.create().show();
     }
 
     private fun setUpDatePicker(layoutId: Int, textViewId: Int) {
