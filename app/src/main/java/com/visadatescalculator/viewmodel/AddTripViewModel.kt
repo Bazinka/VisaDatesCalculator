@@ -8,6 +8,7 @@ import com.visadatescalculator.model.Trip
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
+import org.joda.time.DateTime
 import java.util.*
 
 
@@ -27,7 +28,7 @@ class AddTripViewModel(context: Context, val personId: Int) : ViewModel() {
 
     fun insertTrip(enterDate: Date, leaveDate: Date) {
         viewModelScope.launch {
-            repository.insertTrip(Trip(enterDate, leaveDate, personId))
+            repository.insertTrip(Trip(DateTime(enterDate), DateTime(leaveDate), personId))
         }
     }
 

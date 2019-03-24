@@ -1,16 +1,16 @@
 package com.visadatescalculator.database
 
 import androidx.room.TypeConverter
-import java.util.*
+import org.joda.time.DateTime
 
 class DateConverter {
     @TypeConverter
-    fun fromTimestamp(value: Long?): Date? {
-        return value?.let { Date(it) }
+    fun fromTimestamp(value: Long?): DateTime? {
+        return value?.let { DateTime(it) }
     }
 
     @TypeConverter
-    fun dateToTimestamp(date: Date?): Long? {
-        return date?.time?.toLong()
+    fun dateToTimestamp(date: DateTime?): Long? {
+        return date?.millis
     }
 }

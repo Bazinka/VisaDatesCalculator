@@ -1,12 +1,14 @@
 package com.visadatescalculator.fragments
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -63,6 +65,7 @@ class DaysCalculatorFragment : Fragment() {
 
         viewModel.trips.observe(viewLifecycleOwner, Observer { trips ->
             val emptyTextView = view?.findViewById<TextView>(R.id.trip_empty_text)
+            emptyTextView?.setTextColor(Color.BLACK);
             if (!trips.isNullOrEmpty()) {
                 adapter.setTrips(trips)
                 emptyTextView?.visibility = GONE
@@ -70,6 +73,21 @@ class DaysCalculatorFragment : Fragment() {
                 emptyTextView?.visibility = VISIBLE
             }
         })
+
+        viewModel.result.observe(viewLifecycleOwner, Observer {
+            val resultTextView = view?.findViewById<TextView>(R.id.id_text)
+            resultTextView?.visibility = VISIBLE
+            if (it <= 90) {
+                resultTextView?.setTextColor(Color.GREEN);
+                resultTextView?.text = getString(R.string.good_result) + it.toString()
+            } else {
+                resultTextView?.setTextColor(Color.RED);
+                resultTextView?.text = getString(R.string.bad_result_text) + it.toString()
+            }
+        })
+        view?.findViewById<Button>(R.id.button_calc)?.setOnClickListener {
+            viewModel.calculateVisaDays()
+        }
     }
 
 }

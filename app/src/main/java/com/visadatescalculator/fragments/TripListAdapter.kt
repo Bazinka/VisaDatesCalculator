@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.visadatescalculator.R
 import com.visadatescalculator.model.Trip
-import java.text.SimpleDateFormat
+import org.joda.time.Days
 
 
 class TripListAdapter internal constructor(
@@ -22,6 +22,8 @@ class TripListAdapter internal constructor(
     inner class TripListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tripDateFromTextView: TextView = itemView.findViewById(R.id.trip_date_from)
         val tripDateToTextView: TextView = itemView.findViewById(R.id.trip_date_to)
+        val tripDaysAmountTextView: TextView = itemView.findViewById(R.id.trip_days_amount)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TripListViewHolder {
@@ -32,10 +34,13 @@ class TripListAdapter internal constructor(
     override fun onBindViewHolder(holder: TripListViewHolder, position: Int) {
         val current = trips[position]
 
-        val format = SimpleDateFormat("dd.MM.yyyy")
-
-        holder.tripDateFromTextView.text = format.format(current.enterDate)
-        holder.tripDateToTextView.text = format.format(current.leaveDate)
+        holder.tripDateFromTextView.text = current.enterDate.toString("dd:MM:yyyy")
+        holder.tripDateToTextView.text = current.leaveDate.toString("dd:MM:yyyy")
+        val daysAmount = Days.daysBetween(
+            current.enterDate.withTimeAtStartOfDay(),
+            current.leaveDate.withTimeAtStartOfDay()
+        ) + 1
+        holder.tripDaysAmountTextView.text = daysAmount.days.toString()
     }
 
     internal fun setTrips(words: List<Trip>) {

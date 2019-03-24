@@ -11,7 +11,7 @@ interface TripDao {
     @Query("SELECT * FROM trip")
     fun getAll(): LiveData<List<Trip>>
 
-    @Query("SELECT * FROM trip where person_uid = :personId")
+    @Query("SELECT * FROM trip where person_uid = :personId ORDER BY leave_date DESC")
     fun getTripsByPersonId(personId: Int): LiveData<List<Trip>>
 
 
