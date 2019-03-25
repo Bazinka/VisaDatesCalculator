@@ -15,4 +15,6 @@
     <string name="good_result">Все хорошо, вы можете ехать, количество дней не превышает 90! Ваше количество дней:
     </string>
     <string name="bad_result_text">НЕТ! Вы не можете ехать! Количество дней превышает 90! Ваше количество дней:</string>
+    <string name="add_trip_fab_title">Добавить поездку</string>
+    <string name="add_trip_fab_desc">Создать поездку</string>
 </resources>

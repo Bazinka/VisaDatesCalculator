@@ -2,65 +2,53 @@
 <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
     <TextView
             android:id="@+id/id_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp"
+            android:layout_margin="@dimen/main_padding"
             android:text="@string/warning_trips_text"
+            android:textSize="@dimen/normal_text_size"
             android:layout_marginTop="8dp"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginBottom="8dp"
-    />
+            tools:layout_editor_absoluteX="20dp"/>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/trip_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minWidth="100dp"
-            android:id="@+id/constraintLayout"
-            app:layout_constraintTop_toBottomOf="@+id/id_text">
-        <TextView
-                android:id="@+id/trip_empty_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:text="пока нет поездок, введите хотя бы одну"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginBottom="8dp"
-        />
-        <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/trip_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:clipToPadding="false"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+            android:layout_margin="@dimen/main_padding"
+            android:clipToPadding="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@+id/fab_add_trip"/>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab_add_trip"
-                style="@style/Widget.MaterialComponents.FloatingActionButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:tint="@android:color/white"
-                app:layout_anchorGravity="bottom|end"
-                app:srcCompat="@drawable/ic_plus"
-                android:layout_margin="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    <Button
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fab_add_trip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/main_padding"
+            android:contentDescription="@string/add_trip_fab_desc"
+            android:text="@string/add_trip_fab_title"
+            app:icon="@drawable/ic_plus"
+            app:layout_anchor="@id/trip_list"
+            app:layout_anchorGravity="bottom|right|end"
+            app:layout_constraintTop_toBottomOf="@+id/id_text"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    <com.google.android.material.button.MaterialButton
             android:id="@+id/button_calc"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/primary"
-            app:layout_constraintBottom_toBottomOf="parent"
+            style="@style/Widget.MaterialComponents.Button"
             android:text="@string/calculate_text_button"
-            android:layout_margin="20dp"
-            android:textColor="@color/primary_text"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"/>
+            android:layout_margin="@dimen/main_padding"
+            android:textSize="@dimen/button_text_size"
+            android:padding="@dimen/button_padding"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/trip_list"
+            app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

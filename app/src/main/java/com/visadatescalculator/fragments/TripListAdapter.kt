@@ -34,8 +34,8 @@ class TripListAdapter internal constructor(
     override fun onBindViewHolder(holder: TripListViewHolder, position: Int) {
         val current = trips[position]
 
-        holder.tripDateFromTextView.text = current.enterDate.toString("dd:MM:yyyy")
-        holder.tripDateToTextView.text = current.leaveDate.toString("dd:MM:yyyy")
+        holder.tripDateFromTextView.text = current.enterDate.toString("dd MMM yy")
+        holder.tripDateToTextView.text = current.leaveDate.toString("dd MMM yy")
         val daysAmount = Days.daysBetween(
             current.enterDate.withTimeAtStartOfDay(),
             current.leaveDate.withTimeAtStartOfDay()
