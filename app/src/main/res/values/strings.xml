@@ -1,16 +1,16 @@
 <resources>
     <string name="app_name">VisaDatesCalculator</string>
     <string name="next_button">Продолжить</string>
-    <string name="enter_name">Введите имя</string>
+    <string name="enter_name">Имя</string>
     <string name="save_button">Сохранить</string>
     <string name="empty_name_title">Имя не указано</string>
     <string name="calculate_text_button">Рассчитать</string>
     <string name="warning_trips_text">Убедитесь, что введены все поездки, которые могут быть учтены в расчете (то есть
         примерно за последний год)
     </string>
-    <string name="choose_person_title">Выберите человека</string>
-    <string name="dates_calculator_title">Расчет дней пребывания</string>
-    <string name="add_person_title">Добавление пользователя</string>
+    <string name="choose_person_title">Выберите путешественника</string>
+    <string name="days_calculator_title">Расчет дней пребывания</string>
+    <string name="add_person_title">Добавление путешественника</string>
     <string name="add_trip_title">Добавление поездки</string>
     <string name="good_result">Все хорошо, вы можете ехать, количество дней не превышает 90! Ваше количество дней:
     </string>
