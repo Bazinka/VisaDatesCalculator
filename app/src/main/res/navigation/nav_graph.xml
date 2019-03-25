@@ -22,7 +22,7 @@
     </fragment>
     <fragment android:id="@+id/datesCalculatorFragment"
               android:name="com.visadatescalculator.fragments.DaysCalculatorFragment"
-              android:label="@string/dates_calculator_title"
+              android:label="@string/days_calculator_title"
               tools:layout="@layout/days_calculator_fragment">
         <argument
                 android:name="personUid"

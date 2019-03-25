@@ -5,4 +5,6 @@
     <dimen name="main_padding">20dp</dimen>
     <dimen name="edittext_text_size">18sp</dimen>
     <dimen name="normal_text_size">18sp</dimen>
+    <dimen name="list_item_text_size">16sp</dimen>
+    <dimen name="list_item_margin">16dp</dimen>
 </resources>
