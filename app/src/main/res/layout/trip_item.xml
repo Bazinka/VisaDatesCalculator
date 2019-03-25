@@ -2,53 +2,61 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="horizontal"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+              android:layout_height="wrap_content"
+              android:layout_margin="8dp">
 
-    <LinearLayout android:orientation="horizontal"
-                  android:layout_width="0dp"
-                  android:layout_weight="3"
-                  android:layout_height="wrap_content">
-
-        <TextView
-                android:id="@+id/trip_date_from"
-                android:layout_width="0dp"
-                android:layout_weight="5"
+    <RelativeLayout android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:layout_marginRight="10dp"
+                    android:layout_height="wrap_content">
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:padding="10dp"
-                android:textSize="@dimen/trip_dates_text_size"
-                android:text="пример"
-                android:textColor="@color/primary_text"/>
+                android:layout_centerHorizontal="true"
+                android:layout_marginRight="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:background="@drawable/rounded_back">
+            <TextView
+                    android:id="@+id/trip_date_from"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textSize="@dimen/trip_dates_text_size"
+                    android:text="12/02/19"
+                    android:textColor="@color/primary_text"/>
 
-        <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="10dp"
-                android:textSize="@dimen/trip_dates_text_size"
-                android:text=" - "
-                android:textColor="@color/primary_text"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:textSize="@dimen/trip_dates_text_size"
+                    android:text=" - "
+                    android:textColor="@color/primary_text"/>
 
-        <TextView
-                android:id="@+id/trip_date_to"
-                android:layout_width="0dp"
-                android:layout_weight="5"
-                android:layout_height="wrap_content"
-                android:gravity="left"
-                android:padding="10dp"
-                android:textSize="@dimen/trip_dates_text_size"
-                android:text="пример"
-                android:textColor="@color/primary_text"/>
-    </LinearLayout>
+            <TextView
+                    android:id="@+id/trip_date_to"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:padding="10dp"
+                    android:textSize="@dimen/trip_dates_text_size"
+                    android:text="12/02/19"
+                    android:textColor="@color/primary_text"/>
+        </LinearLayout>
+    </RelativeLayout>
     <TextView
             android:id="@+id/trip_days_amount"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:gravity="right"
+            android:gravity="center"
+            android:background="@drawable/rounded_back_fill"
             android:padding="10dp"
+            android:text="64"
             android:textSize="@dimen/trip_dates_text_size"
-            android:textColor="@color/primary_text"/>
+            android:textColor="@color/white"/>
 
 </LinearLayout>
