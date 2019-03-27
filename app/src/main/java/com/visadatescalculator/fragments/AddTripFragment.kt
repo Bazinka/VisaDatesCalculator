@@ -97,7 +97,7 @@ class AddTripFragment : Fragment() {
     }
 
     private fun setUpDatePicker(year: Int, month: Int, day: Int, enterDateTextView: TextInputEditText) {
-        val newDate = DateTime(year, month + 1, day, 0, 0, 0)
+        val newDate = DateTime(year, month, day, 0, 0, 0)
         enterDateTextView.setText(newDate.toString("dd MMM yyyy"))
         enterDateTextView.tag = newDate
     }
