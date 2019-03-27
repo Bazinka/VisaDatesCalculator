@@ -3,14 +3,12 @@ package com.visadatescalculator.viewmodel
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.*
-import androidx.lifecycle.Observer
 import com.visadatescalculator.DataRepository
 import com.visadatescalculator.model.Trip
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import org.joda.time.DateTime
-import java.util.*
 
 
 class AddTripViewModel(context: Context, val personId: Int) : ViewModel() {
@@ -33,16 +31,13 @@ class AddTripViewModel(context: Context, val personId: Int) : ViewModel() {
     }
 
 
-    fun insertTrip(viewLifecycleOwner: LifecycleOwner, enterDate: Date, leaveDate: Date) {
+    fun insertTrip(viewLifecycleOwner: LifecycleOwner, enterDate: DateTime, leaveDate: DateTime) {
         allTrips.observe(viewLifecycleOwner, Observer<List<Trip>> {
             allTrips.removeObservers(viewLifecycleOwner)
-            val listTrips = checkTripPeriods(
-                DateTime(enterDate),
-                DateTime(leaveDate)
-            )
+            val listTrips = checkTripPeriods(enterDate, leaveDate)
             if (listTrips.isEmpty()) {
                 viewModelScope.launch {
-                    repository.insertTrip(Trip(DateTime(enterDate), DateTime(leaveDate), personId))
+                    repository.insertTrip(Trip(enterDate, leaveDate, personId))
                 }
             }
             intersectionTrips.value = listTrips
