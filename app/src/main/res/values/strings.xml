@@ -17,4 +17,7 @@
     <string name="bad_result_text">НЕТ! Вы не можете ехать! Количество дней превышает 90! Ваше количество дней:</string>
     <string name="add_trip_fab_title">Добавить поездку</string>
     <string name="add_trip_fab_desc">Создать поездку</string>
+    <string name="error_title">Ошибка</string>
+    <string name="trip_mix_with_diffrent_trip">Нельзя создать поездку, даты пересекаются с текущими поездками</string>
+    <string name="enter_date_before_leaving_date">Дата въезда позже даты выезда</string>
 </resources>

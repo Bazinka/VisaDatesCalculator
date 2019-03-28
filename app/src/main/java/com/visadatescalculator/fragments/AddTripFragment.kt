@@ -19,7 +19,6 @@ import androidx.navigation.Navigation
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.visadatescalculator.R
-import com.visadatescalculator.model.Trip
 import com.visadatescalculator.viewmodel.AddTripViewModel
 import com.visadatescalculator.viewmodel.AddTripViewModelFactory
 import org.joda.time.DateTime
@@ -53,7 +52,11 @@ class AddTripFragment : Fragment() {
         view?.findViewById<MaterialButton>(R.id.button_save)?.setOnClickListener { button ->
             val enterDate = view?.findViewById<TextInputEditText>(R.id.enter_date_text)?.tag as DateTime
             val leaveDate = view?.findViewById<TextInputEditText>(R.id.leave_date_text)?.tag as DateTime
-            viewModel.insertTrip(viewLifecycleOwner, enterDate, leaveDate)
+            if (enterDate.isBefore(leaveDate)) {
+                viewModel.insertTrip(viewLifecycleOwner, enterDate, leaveDate)
+            } else {
+                showErrorDialog(R.string.enter_date_before_leaving_date)
+            }
         }
 
         view?.findViewById<TextInputEditText>(R.id.enter_date_text)?.setOnFocusChangeListener { editView, focus ->
@@ -78,7 +81,7 @@ class AddTripFragment : Fragment() {
                     Navigation.findNavController(it).navigateUp()
                 }
             } else {
-                showErrorDialog(it)
+                showErrorDialog(R.string.trip_mix_with_diffrent_trip)
             }
         })
 
@@ -132,10 +135,10 @@ class AddTripFragment : Fragment() {
         anim.start()
     }
 
-    private fun showErrorDialog(list: List<Trip>?) {
+    private fun showErrorDialog(resourseId: Int) {
         val builder = AlertDialog.Builder(activity as Context);
-        builder.setTitle("Ошибка")
-        builder.setMessage("Нельзя создать поездку, даты пересекаются с текущими поездками")
+        builder.setTitle(getString(R.string.error_title))
+        builder.setMessage(resourseId)
         builder.setPositiveButton(android.R.string.ok, DialogInterface.OnClickListener { dialogInterface, i ->
             dialogInterface.dismiss()
         })
