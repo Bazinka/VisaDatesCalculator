@@ -16,6 +16,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.visadatescalculator.R
+import com.visadatescalculator.model.Trip
 import com.visadatescalculator.viewmodel.DaysCalculatorViewModel
 import com.visadatescalculator.viewmodel.DaysCalculatorViewModelFactory
 
@@ -59,13 +60,14 @@ class DaysCalculatorFragment : Fragment() {
         }
 
         val recyclerView = view?.findViewById<RecyclerView>(R.id.trip_list)
-        val adapter = TripListAdapter(activity as Context)
+        val adapter = TripListAdapter(activity as Context, View.OnClickListener {
+            val trip = it.tag as Trip
+            viewModel.deleteTrip(trip)
+        })
         recyclerView?.adapter = adapter
 
         viewModel.trips.observe(viewLifecycleOwner, Observer { trips ->
-            if (!trips.isNullOrEmpty()) {
-                adapter.setTrips(trips)
-            }
+            adapter.setTrips(trips)
         })
 
         viewModel.result.observe(viewLifecycleOwner, Observer {

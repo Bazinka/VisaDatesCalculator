@@ -1,16 +1,13 @@
 package com.visadatescalculator
 
 import android.content.Context
-import android.util.Log
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
 import com.visadatescalculator.database.MainDatabase
 import com.visadatescalculator.model.Person
 import com.visadatescalculator.model.Trip
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import org.joda.time.DateTime
 
 class DataRepository internal constructor(private val context: Context) {
 
@@ -29,6 +26,13 @@ class DataRepository internal constructor(private val context: Context) {
     suspend fun insertTrip(trip: Trip) {
         withContext(Dispatchers.IO) {
             MainDatabase.getDatabase(context).tripDao().insertTrip(trip)
+        }
+    }
+
+    @WorkerThread
+    suspend fun deleteTrip(trip: Trip) {
+        withContext(Dispatchers.IO) {
+            MainDatabase.getDatabase(context).tripDao().delete(trip)
         }
     }
 

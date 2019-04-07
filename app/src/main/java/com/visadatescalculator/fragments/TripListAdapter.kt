@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -14,7 +15,7 @@ import org.joda.time.Days
 
 
 class TripListAdapter internal constructor(
-    context: Context
+    context: Context, val clickListener: View.OnClickListener
 ) : ListAdapter<Trip, TripListAdapter.TripListViewHolder>(TripDiffCallback()) {
     private var trips: List<Trip> = emptyList()
     private val inflater: LayoutInflater = LayoutInflater.from(context)
@@ -23,7 +24,7 @@ class TripListAdapter internal constructor(
         val tripDateFromTextView: TextView = itemView.findViewById(R.id.trip_date_from)
         val tripDateToTextView: TextView = itemView.findViewById(R.id.trip_date_to)
         val tripDaysAmountTextView: TextView = itemView.findViewById(R.id.trip_days_amount)
-
+        val tripDeleteImageButton: ImageButton = itemView.findViewById(R.id.trip_delete)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TripListViewHolder {
@@ -41,6 +42,12 @@ class TripListAdapter internal constructor(
             current.leaveDate.withTimeAtStartOfDay()
         ) + 1
         holder.tripDaysAmountTextView.text = daysAmount.days.toString()
+        holder.tripDeleteImageButton.apply {
+            tag = current
+            setOnClickListener {
+                clickListener.onClick(it)
+            }
+        }
     }
 
     internal fun setTrips(words: List<Trip>) {

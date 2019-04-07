@@ -4,8 +4,10 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.visadatescalculator.DataRepository
 import com.visadatescalculator.model.Trip
+import kotlinx.coroutines.launch
 import org.joda.time.DateTime
 import org.joda.time.Days
 import org.joda.time.Period
@@ -47,5 +49,11 @@ class DaysCalculatorViewModel(context: Context, val personId: Int) : ViewModel()
             }
         }
         result.value = daysAmount
+    }
+
+    fun deleteTrip(trip: Trip) {
+        viewModelScope.launch {
+            repository.deleteTrip(trip)
+        }
     }
 }
